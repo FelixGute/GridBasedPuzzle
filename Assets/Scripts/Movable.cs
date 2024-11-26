@@ -16,9 +16,13 @@ public class Movable : MonoBehaviour
 
     public bool MoveMe(Vector3 direction)
     {
-        movePoint.position += direction;
-        Debug.Log(direction);
-        return true;
+        if (!Physics2D.OverlapCircle(movePoint.position + direction, 0.2f, whatStopsMovement))
+        {
+            movePoint.position += direction;
+            return true;
+        }
+
+        return false;
     }
     
     void Update()

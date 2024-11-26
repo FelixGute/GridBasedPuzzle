@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Collider2D hit =
                         Physics2D.OverlapCircle(movePoint.position + horizontalMoveTo, 0.2f, movableObjects);
-                    if (hit && hit.GetComponent<Movable>().MoveMe(horizontalMoveTo))
+                    if (!hit || hit && hit.GetComponent<Movable>().MoveMe(horizontalMoveTo))
                     {
                         movePoint.position += horizontalMoveTo;
                     }
@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Collider2D hit =
                         Physics2D.OverlapCircle(movePoint.position + verticalMoveTo, 0.2f, movableObjects);
-                    if (hit && hit.GetComponent<Movable>().MoveMe(verticalMoveTo))
+                    if (!hit || hit && hit.GetComponent<Movable>().MoveMe(verticalMoveTo))
                     {
                         movePoint.position += verticalMoveTo;
                     }
