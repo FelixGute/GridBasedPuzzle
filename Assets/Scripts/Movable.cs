@@ -8,6 +8,7 @@ public class Movable : MonoBehaviour
 
     [SerializeField] private Transform movePoint;
     [SerializeField] private LayerMask whatStopsMovement;
+    [SerializeField] private LayerMask goalObjects;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,6 +20,14 @@ public class Movable : MonoBehaviour
         if (!Physics2D.OverlapCircle(movePoint.position + direction, 0.2f, whatStopsMovement))
         {
             movePoint.position += direction;
+            
+            Collider2D hit =
+                Physics2D.OverlapCircle(movePoint.position + direction, 0.2f, goalObjects);
+            if (!hit || hit && hit.GetComponent<Goal>().GoalTriggered())
+            {
+                
+            }
+            
             return true;
         }
 
